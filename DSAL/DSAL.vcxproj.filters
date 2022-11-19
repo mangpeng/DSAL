@@ -18,5 +18,8 @@
     <ClInclude Include="Array.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

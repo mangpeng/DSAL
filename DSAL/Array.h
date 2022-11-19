@@ -6,10 +6,10 @@ namespace X
 {
 
 template<typename _Ty>
-class Iterator
+class Array_Iterator
 {
 public:
-	Iterator(_Ty* ptr, SIZE_T pos) : _ptr(ptr + pos) {}
+	Array_Iterator(_Ty* ptr, SIZE_T pos) : _ptr(ptr + pos) {}
 
 public:
 	_Ty& operator*()
@@ -17,36 +17,36 @@ public:
 		return *_ptr;
 	}
 
-	Iterator& operator++() // prefix increment operator
+	Array_Iterator& operator++() // prefix increment operator
 	{
 		_ptr += 1;
 		return *this;
 	}
 
-	Iterator operator++(int) // suffix increment operator
+	Array_Iterator operator++(int) // suffix increment operator
 	{
 		_Ty* p = _ptr + 1;
-		return Iterator(p, 0);
+		return Array_Iterator(p, 0);
 	}
 
-	Iterator& operator--() // prefix increment operator
+	Array_Iterator& operator--() // prefix increment operator
 	{
 		_ptr -= 1;
 		return *this;
 	}
 
-	Iterator operator--(int) // suffix increment operator
+	Array_Iterator operator--(int) // suffix increment operator
 	{
 		_Ty* p = _ptr - 1;
-		return Iterator(p, 0);
+		return Array_Iterator(p, 0);
 	}
 
-	XBOOL operator==(const Iterator& src) 
+	XBOOL operator==(const Array_Iterator& src) 
 	{
 		return _ptr == src._ptr;
 	}
 
-	XBOOL operator!=(const Iterator& src)
+	XBOOL operator!=(const Array_Iterator& src)
 	{
 		return !(*this == src);
 	}
@@ -59,14 +59,12 @@ private:
 template<typename _Ty, SIZE_T _Size>
 class XArray
 {
-
-	using value_type = _Ty;
-	using reference = _Ty&;
-	using const_reference = const _Ty&;
-	using pointer = _Ty*;
-	using const_pointer = const _Ty*;
-	
-	using iterator = Iterator<_Ty>;
+	using value_type		= _Ty;
+	using reference			= _Ty&;
+	using const_reference	= const _Ty&;
+	using pointer			= _Ty*;
+	using const_pointer		= const _Ty*;
+	using iterator			= Array_Iterator<_Ty>;
 
 public:
 	XArray() = delete;

@@ -1,9 +1,9 @@
 #include <iostream>
 #include <array>
-#include "Array.h"
-#include <algorithm>
 #include <vector>
-#include <list>
+#include "Array.h"
+#include "Vector.h"
+#include <algorithm>
 
 using namespace std;
 
@@ -78,11 +78,126 @@ XVOID TestArray()
 	}
 }
 
+class Point
+{
+public:
+	Point() : _x(0), _y(0) {}
+	Point(XINT x, XINT y) : _x(x), _y(y) {}
+
+public:
+	XVOID Print() const
+	{
+		cout << _x << ", " << _y << endl;
+	}
+
+private:
+	XINT _x;
+	XINT _y;
+
+};
+
+XVOID TestVector()
+{
+	{
+		cout << "=================== stl vector ===================" << endl;
+		vector<XINT> v1;
+		v1.push_back(10);
+		v1.push_back(20);
+		v1.push_back(30);
+
+		for_each(v1.begin(), v1.end(), [](XINT a) { cout << a << " "; });
+		cout << endl;
+
+		v1.pop_back();
+		v1.pop_back();
+		for_each(v1.begin(), v1.end(), [](XINT a) { cout << a << " "; });
+		cout << endl;
+
+		v1[0] = 1000;
+		for_each(v1.begin(), v1.end(), [](XINT a) { cout << a << " "; });
+		cout << endl;
+
+		v1.push_back(1);
+		v1.push_back(2);
+		v1.push_back(3);
+		auto it = v1.begin();
+		it += 2;
+		*it = 3000;
+		v1[0] = 1000;
+		for_each(v1.begin(), v1.end(), [](XINT a) { cout << a << " "; });
+		cout << endl;
+		
+		vector<XINT> v2{ 1,2,3,4 };
+		v2.push_back(1023);
+		for_each(v2.begin(), v2.end(), [](XINT a) { cout << a << " "; });
+		cout << endl;
+
+		auto& b = v2.back();
+		cout << b << endl;
+
+		vector<Point> v3;
+		v3.emplace_back();
+		v3.emplace_back(1, 3);
+		for_each(v3.begin(), v3.end(), [](const Point& p) { p.Print(); });
+		cout << endl;
+	}
+
+	cout << endl;
+
+	{
+		cout << "=================== XVector ===================" << endl;
+		X::XVector<XINT> v1;
+
+		v1.push_back(10);
+		v1.push_back(20);
+		v1.push_back(30);
+		for_each(v1.begin(), v1.end(), [](XINT a) { cout << a << " "; });
+		cout << endl;
+
+		v1.pop_back();
+		v1.pop_back();
+		for_each(v1.begin(), v1.end(), [](XINT a) { cout << a << " "; });
+		cout << endl;
+
+		v1[0] = 1000;
+		for_each(v1.begin(), v1.end(), [](XINT a) { cout << a << " "; });
+		cout << endl;
+
+		v1.push_back(1);
+		v1.push_back(2);
+		v1.push_back(3);
+		auto it = v1.begin();
+		it += 2;
+		*it = 3000;
+		v1[0] = 1000;
+		for_each(v1.begin(), v1.end(), [](XINT a) { cout << a << " "; });
+		cout << endl;
+
+		X::XVector<XINT> v2{ 1,2,3,4};
+		v2.push_back(1023);
+		for_each(v2.begin(), v2.end(), [](XINT a) { cout << a << " "; });
+		cout << endl;
+
+		auto& b = v2.back();
+		cout << b << endl;
+
+		X::XVector<Point> v3;
+		v3.emplace_back();
+		v3.emplace_back(1, 3);
+		for_each(v3.begin(), v3.end(), [](const Point& p) { p.Print(); });
+		cout << endl;
+	}
+
+}
+
 int main()
 {
 	// stl array, XArray
-	TestArray();
-	
+	//TestArray();
+
+	// stl vector, XVector
+	TestVector();
+
 
 	return 0;
 }

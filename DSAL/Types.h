@@ -8,5 +8,6 @@
 using SIZE_T	 = size_t;
 using XVOID		 = void;
 using XBOOL		 = bool;
+using XINT		 = int;
 
 
