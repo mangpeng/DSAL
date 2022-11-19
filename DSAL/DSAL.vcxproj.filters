@@ -21,5 +21,8 @@
     <ClInclude Include="Vector.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="List.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

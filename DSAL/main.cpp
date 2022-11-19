@@ -1,8 +1,10 @@
 #include <iostream>
 #include <array>
 #include <vector>
+#include <list>
 #include "Array.h"
 #include "Vector.h"
+#include "List.h"
 #include <algorithm>
 
 using namespace std;
@@ -81,7 +83,10 @@ XVOID TestArray()
 class Point
 {
 public:
-	Point() : _x(0), _y(0) {}
+	Point() : _x(0), _y(0)
+	{
+		cout << "here" << endl;
+	}
 	Point(XINT x, XINT y) : _x(x), _y(y) {}
 
 public:
@@ -190,13 +195,89 @@ XVOID TestVector()
 
 }
 
+XVOID TestList()
+{
+	{
+		cout << "=================== stl list ===================" << endl;
+		list<XINT> li1;
+
+		li1.push_back(1);
+		li1.push_front(2);
+		li1.push_back(3);
+		li1.push_front(4);
+		for_each(li1.begin(), li1.end(), [](XINT& ele) { cout << ele << " "; });
+		cout << endl;
+		cout << li1.size() << endl;
+
+		li1.pop_front();
+		li1.pop_back();
+
+		for_each(li1.begin(), li1.end(), [](XINT& ele) { cout << ele << " "; });
+		cout << endl;
+
+		list<XINT> li2;
+		li2.push_back(1);
+		li2.push_back(2);
+		li2.push_back(3);
+		li2.push_back(4);
+		for (auto it = li2.begin(); it != li2.end();)
+		{
+			if (*it % 2 == 0)
+				it = li2.erase(it);
+			else
+				++it;
+		}
+		for_each(li2.begin(), li2.end(), [](XINT& ele) { cout << ele << " "; });
+		cout << endl;
+	}
+
+	cout << endl;
+
+	{
+		cout << "=================== XList ===================" << endl;
+		X::XList<XINT> li1;
+
+		li1.push_back(1);
+		li1.push_front(2);
+		li1.push_back(3);
+		li1.push_front(4);
+		for_each(li1.begin(), li1.end(), [](XINT& ele) { cout << ele << " "; });
+		cout << endl;
+		cout << li1.size() << endl;
+
+		li1.pop_front();
+		li1.pop_back();
+		for_each(li1.begin(), li1.end(), [](XINT& ele) { cout << ele << " "; });
+		cout << endl;
+
+		X::XList<XINT> li2;
+		li2.push_back(1);
+		li2.push_back(2);
+		li2.push_back(3);
+		li2.push_back(4);
+		for (auto it = li2.begin(); it != li2.end();)
+		{
+			if (*it % 2 == 0)
+				it = li2.erase(it);
+			else
+				++it;
+		}
+		for_each(li2.begin(), li2.end(), [](XINT& ele) { cout << ele << " "; });
+		cout << endl;
+	}
+
+}
 int main()
 {
 	// stl array, XArray
 	//TestArray();
 
 	// stl vector, XVector
-	TestVector();
+	//TestVector();
+
+	// stl list, XList
+	TestList();
+
 
 
 	return 0;

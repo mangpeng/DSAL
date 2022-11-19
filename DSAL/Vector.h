@@ -79,11 +79,8 @@ class XVector
 	using iterator = Iterator<_Ty>;
 
 public:
-	XVector() : _data(nullptr), _size(0), _capacity(0)
-	{
-		_Alloc alloc;
-	}
-	XVector(std::initializer_list<value_type> l) : _data(nullptr), _size(0), _capacity(0)
+	XVector() : _data(nullptr), _size(0), _capacity(0), _allocator{} {}
+	XVector(std::initializer_list<value_type> l) : _data(nullptr), _size(0), _capacity(0), _allocator{}
 	{
 		reserve(l.size());
 		for(auto& ele : l)
@@ -196,12 +193,11 @@ public:
 
 		
 private:
-	pointer		_data;
-	SIZE_T		_size;
-	SIZE_T		_capacity;
+	pointer				_data;
+	SIZE_T				_size;
+	SIZE_T				_capacity;
 
-	_Alloc		_allocator;
-
+	allocator_type		_allocator;
 };
 
 }
