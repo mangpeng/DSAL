@@ -2,9 +2,11 @@
 #include <array>
 #include <vector>
 #include <list>
+#include <deque>
 #include "Array.h"
 #include "Vector.h"
 #include "List.h"
+#include "Deque.h"
 #include <algorithm>
 
 using namespace std;
@@ -267,6 +269,42 @@ XVOID TestList()
 	}
 
 }
+
+
+XVOID TestDeque()
+{
+	{
+		cout << "=================== stl deque ===================" << endl;
+		deque<XINT> dq;
+		dq.push_back(1);
+		dq.push_front(2);
+		dq.push_back(3);
+		dq.push_front(4);
+
+		for_each(dq.begin(), dq.end(), [](XINT ele) { cout << ele << " "; });
+		cout << endl;	
+
+		
+		
+	}
+
+	cout << endl;
+
+	{
+		cout << "=================== XDeque ===================" << endl;
+		X::XDeque<XINT> dq;
+		/*dq.push_back(1);
+		dq.push_front(2);
+		dq.push_back(3);
+		dq.push_front(4);
+
+		for_each(dq.begin(), dq.end(), [](XINT ele) { cout << ele << " "; });
+		cout << endl;*/
+
+	}
+
+}
+
 int main()
 {
 	// stl array, XArray
@@ -276,7 +314,10 @@ int main()
 	//TestVector();
 
 	// stl list, XList
-	TestList();
+	//TestList();
+
+	// stl deque, XDeque
+	TestDeque();
 
 
 

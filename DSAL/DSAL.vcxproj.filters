@@ -24,5 +24,8 @@
     <ClInclude Include="List.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="Deque.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
