@@ -6,7 +6,7 @@
 #include "Array.h"
 #include "Vector.h"
 #include "List.h"
-#include "Deque.h"
+//#include "Deque.h"
 #include <algorithm>
 
 using namespace std;
@@ -292,7 +292,7 @@ XVOID TestDeque()
 
 	{
 		cout << "=================== XDeque ===================" << endl;
-		X::XDeque<XINT> dq;
+		//X::XDeque<XINT> dq;
 		/*dq.push_back(1);
 		dq.push_front(2);
 		dq.push_back(3);
@@ -308,7 +308,7 @@ XVOID TestDeque()
 int main()
 {
 	// stl array, XArray
-	//TestArray();
+	TestArray();
 
 	// stl vector, XVector
 	//TestVector();
@@ -317,7 +317,7 @@ int main()
 	//TestList();
 
 	// stl deque, XDeque
-	TestDeque();
+	//TestDeque();
 
 
 

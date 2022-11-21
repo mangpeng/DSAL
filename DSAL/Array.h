@@ -68,14 +68,14 @@ class XArray
 
 public:
 	XArray() = delete;
-	XArray(std::initializer_list<value_type> l) :_data(nullptr), _len(0)
+	XArray(std::initializer_list<value_type> l) :_data{}, _len(0)
 	{
 		if (l.size() > _Size)
 		{
 			_Xran();
 		}
 
-		_data = new value_type[_Size];
+
 		for (auto it = l.begin(); it != l.end(); ++it)
 		{
 			_data[_len] = *it;
@@ -84,10 +84,7 @@ public:
 
 	}
 
-	~XArray()
-	{
-		delete[] _data;
-	}
+	~XArray() = default;
 
 public:
 	NODISCARD CONSTEXPR reference at(value_type pos)
@@ -134,7 +131,7 @@ private:
 	}
 
 private:
-	value_type*			_data;
+	value_type			_data[_Size];
 	SIZE_T				_len;
 
 };
