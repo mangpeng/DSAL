@@ -3,3 +3,8 @@
 x64/
 x32/
 .vs/
+
+
+*.vcxproj
+*.vcxproj.filtters
+*.vcxproj.user
